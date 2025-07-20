@@ -28,6 +28,13 @@ $(SERVER): $(TARGET_DIR) $(SERVER_SRC)
 $(CLIENT): $(TARGET_DIR) $(CLIENT_SRC)
 	$(CC) $(CFLAGS) -o $@ $(CLIENT_SRC)
 
+# 显式伪目标，方便使用 make server/client
+.PHONY: all clean server client
+
+server: $(SERVER)
+
+client: $(CLIENT)
+
 # 清理目标文件
 clean:
 	rm -rf $(TARGET_DIR)
