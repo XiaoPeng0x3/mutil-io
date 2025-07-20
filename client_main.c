@@ -3,8 +3,16 @@
 #include <stdlib.h>
 #include <string.h>
 
-int main() {
-    int sockfd = create_client_socket("127.0.0.1", 8888);
+int main(int argc, char *argv[]) {
+    if (argc != 3) {
+        printf("用法: %s <ip> <port>\n", argv[0]);
+        return 1;
+    }
+    // 获取IP
+    const char *ip = argv[1];
+    // 获取port
+    int port = atoi(argv[2]);
+    int sockfd = create_client_socket(ip, port);
     if (sockfd < 0) return 1;
     char buffer[1024];
     printf("输入一些东西吧: ");
